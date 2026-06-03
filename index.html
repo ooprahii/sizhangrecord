@@ -6,57 +6,35 @@
 <title>私账记账本</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap');
-
 :root{
-  --ink:#1C1917;
-  --ink2:#57534E;
-  --ink3:#A8A29E;
-  --paper:#FAFAF8;
-  --paper2:#F5F4F0;
-  --paper3:#ECEAE4;
-  --line:rgba(28,25,23,0.1);
-  --line2:rgba(28,25,23,0.06);
-  --green:#166534;
-  --green-bg:#DCFCE7;
-  --red:#991B1B;
-  --red-bg:#FEE2E2;
-  --accent:#92400E;
-  --accent-bg:#FEF3C7;
+  --ink:#1C1917;--ink2:#57534E;--ink3:#A8A29E;
+  --paper:#FAFAF8;--paper2:#F5F4F0;--paper3:#ECEAE4;
+  --line:rgba(28,25,23,0.1);--line2:rgba(28,25,23,0.06);
+  --green:#166534;--green-bg:#DCFCE7;
+  --red:#991B1B;--red-bg:#FEE2E2;
+  --accent:#92400E;--accent-bg:#FEF3C7;
   --r:10px;
   --font-serif:'Noto Serif SC',serif;
   --font-mono:'DM Mono',monospace;
 }
-
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:var(--font-serif);color:var(--ink);background:var(--paper);min-height:100vh}
-
-/* Layout */
 .page{max-width:1000px;margin:0 auto;padding:2rem 1.5rem 4rem}
-
-/* Header */
 .header{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:2.5rem;border-bottom:1px solid var(--line);padding-bottom:1.25rem}
 .header-left h1{font-size:22px;font-weight:600;letter-spacing:0.02em}
 .header-left p{font-size:13px;color:var(--ink3);margin-top:4px;font-family:var(--font-mono)}
 .save-tip{font-size:12px;color:var(--green);font-family:var(--font-mono);opacity:0;transition:opacity 0.3s;display:flex;align-items:center;gap:5px}
 .save-tip.show{opacity:1}
-
-/* Cards */
 .card{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:1.5rem;margin-bottom:1.25rem}
 .card-title{font-size:14px;font-weight:600;letter-spacing:0.05em;color:var(--ink2);text-transform:uppercase;margin-bottom:1.25rem;display:flex;align-items:center;gap:8px}
 .card-title::before{content:'';display:inline-block;width:3px;height:14px;background:var(--accent);border-radius:2px}
-
-/* Form */
 .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .form-group{display:flex;flex-direction:column;gap:6px}
 .form-group.full{grid-column:1/-1}
-.form-group.third{grid-column:span 1}
 label{font-size:12px;color:var(--ink3);letter-spacing:0.06em;text-transform:uppercase;font-family:var(--font-mono)}
 input,select{width:100%;height:38px;padding:0 12px;border:1px solid var(--line);border-radius:8px;background:var(--paper);color:var(--ink);font-size:14px;font-family:var(--font-serif);transition:border-color 0.15s,box-shadow 0.15s}
 input:focus,select:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(146,64,14,0.08)}
-input[type="number"]{font-family:var(--font-mono)}
-input[type="date"]{font-family:var(--font-mono);font-size:13px}
-
-/* Buttons */
+input[type="number"],input[type="date"]{font-family:var(--font-mono);font-size:13px}
 .btn-row{display:flex;justify-content:flex-end;gap:10px;margin-top:1.25rem}
 .btn{display:inline-flex;align-items:center;gap:6px;padding:9px 20px;border-radius:8px;font-size:14px;font-family:var(--font-serif);cursor:pointer;transition:all 0.15s;border:1px solid transparent}
 .btn-primary{background:var(--ink);color:#fff;border-color:var(--ink)}
@@ -70,26 +48,17 @@ input[type="date"]{font-family:var(--font-mono);font-size:13px}
 .btn-amber{background:var(--accent-bg);color:var(--accent);border-color:rgba(146,64,14,0.2)}
 .btn-amber:hover{background:#FDE68A}
 .btn-sm{padding:6px 14px;font-size:13px}
-.btn-xs{padding:4px 10px;font-size:12px}
 .btn-text{background:none;border:none;font-size:13px;color:var(--ink3);cursor:pointer;font-family:var(--font-serif);text-decoration:underline;padding:0}
 .btn-text:hover{color:var(--ink)}
 .btn-text.danger{color:var(--red)}
-
-/* Summary */
 .summary{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:1.25rem}
 .metric{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:1.25rem;text-align:center}
 .metric-label{font-size:11px;color:var(--ink3);letter-spacing:0.08em;text-transform:uppercase;font-family:var(--font-mono);margin-bottom:8px}
 .metric-value{font-size:24px;font-weight:500;font-family:var(--font-mono)}
-.val-green{color:var(--green)}
-.val-red{color:var(--red)}
-.val-neutral{color:var(--ink)}
-
-/* Filter */
+.val-green{color:var(--green)}.val-red{color:var(--red)}.val-neutral{color:var(--ink)}
 .filter-grid{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px}
 .filter-actions{display:flex;gap:8px;justify-content:flex-end;align-items:center;margin-top:1rem}
 .result-badge{font-size:12px;color:var(--ink3);font-family:var(--font-mono);margin-right:auto}
-
-/* Table */
 .table-wrap{overflow-x:auto;margin-top:0.5rem}
 table{width:100%;border-collapse:collapse;font-size:13px}
 th{text-align:left;padding:8px 12px;color:var(--ink3);font-weight:400;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;font-family:var(--font-mono);border-bottom:1px solid var(--line);white-space:nowrap}
@@ -97,39 +66,26 @@ td{padding:10px 12px;border-bottom:1px solid var(--line2);vertical-align:middle}
 tr:last-child td{border-bottom:none}
 tr:hover td{background:var(--paper2)}
 .empty-row td{text-align:center;padding:3rem;color:var(--ink3);font-size:14px}
-
-/* Badge */
 .badge{display:inline-block;font-size:11px;padding:2px 8px;border-radius:20px;font-family:var(--font-mono);font-weight:500}
 .badge-in{background:var(--green-bg);color:var(--green)}
 .badge-out{background:var(--red-bg);color:var(--red)}
-
-/* Amount */
 .amt-in{color:var(--green);font-family:var(--font-mono);font-weight:500}
 .amt-out{color:var(--red);font-family:var(--font-mono);font-weight:500}
 .bal-pos{color:var(--green);font-family:var(--font-mono)}
 .bal-neg{color:var(--red);font-family:var(--font-mono)}
 .mono{font-family:var(--font-mono);color:var(--ink2)}
-
-/* Action btn */
 .icon-btn{background:none;border:1px solid transparent;border-radius:6px;cursor:pointer;padding:4px 8px;color:var(--ink3);font-size:13px;transition:all 0.1s;font-family:var(--font-serif)}
 .icon-btn:hover{background:var(--paper2);border-color:var(--line);color:var(--ink)}
-
-/* Modal */
 .overlay{display:none;position:fixed;inset:0;background:rgba(28,25,23,0.4);z-index:200;align-items:center;justify-content:center;backdrop-filter:blur(2px)}
 .overlay.open{display:flex}
 .modal{background:#fff;border:1px solid var(--line);border-radius:14px;padding:1.75rem;width:380px;max-width:92vw;box-shadow:0 20px 60px rgba(0,0,0,0.12)}
 .modal-title{font-size:16px;font-weight:600;margin-bottom:1.25rem}
 .modal-form{display:flex;flex-direction:column;gap:12px}
 .modal-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:1.25rem}
-
-/* Import */
-.import-zone{border:2px dashed var(--line);border-radius:8px;padding:2rem;text-align:center;cursor:pointer;transition:all 0.15s;color:var(--ink3);font-size:14px}
+.import-zone{border:2px dashed var(--line);border-radius:8px;padding:2rem;text-align:center;cursor:pointer;transition:all 0.15s;color:var(--ink3);font-size:14px;display:block}
 .import-zone:hover,.import-zone.drag{border-color:var(--accent);background:var(--accent-bg);color:var(--accent)}
 .import-zone input{display:none}
-
-/* Table header row with clear btn */
 .table-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:0.75rem}
-
 @media(max-width:680px){
   .form-grid,.filter-grid,.summary{grid-template-columns:1fr}
   .form-group.full{grid-column:1}
@@ -139,8 +95,6 @@ tr:hover td{background:var(--paper2)}
 </head>
 <body>
 <div class="page">
-
-  <!-- Header -->
   <div class="header">
     <div class="header-left">
       <h1>私账记账本</h1>
@@ -149,118 +103,55 @@ tr:hover td{background:var(--paper2)}
     <div class="save-tip" id="save-tip">✓ 已自动保存</div>
   </div>
 
-  <!-- 新增记录 -->
   <div class="card">
     <div class="card-title">新增记录</div>
     <div class="form-grid">
-      <div class="form-group">
-        <label>收支类型</label>
-        <select id="f-type">
-          <option value="income">收入</option>
-          <option value="expense">支出</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label>金额（元）</label>
-        <input type="number" id="f-amount" placeholder="0.00" min="0" step="0.01">
-      </div>
-      <div class="form-group">
-        <label>描述</label>
-        <input type="text" id="f-desc" placeholder="例：展会KT板定制">
-      </div>
-      <div class="form-group">
-        <label>归类</label>
-        <input type="text" id="f-category" placeholder="例：运营费用">
-      </div>
-      <div class="form-group full">
-        <label>客户</label>
-        <input type="text" id="f-client" placeholder="填写客户名称">
-      </div>
+      <div class="form-group"><label>收支类型</label><select id="f-type"><option value="income">收入</option><option value="expense">支出</option></select></div>
+      <div class="form-group"><label>金额（元）</label><input type="number" id="f-amount" placeholder="0.00" min="0" step="0.01"></div>
+      <div class="form-group"><label>描述</label><input type="text" id="f-desc" placeholder="例：展会KT板定制"></div>
+      <div class="form-group"><label>归类</label><input type="text" id="f-category" placeholder="例：运营费用"></div>
+      <div class="form-group full"><label>客户</label><input type="text" id="f-client" placeholder="填写客户名称"></div>
     </div>
-    <div class="btn-row">
-      <button class="btn btn-primary" onclick="addRecord()">✓ 完成</button>
-    </div>
+    <div class="btn-row"><button class="btn btn-primary" onclick="addRecord()">✓ 完成</button></div>
   </div>
 
-  <!-- 汇总 -->
   <div class="summary">
-    <div class="metric">
-      <div class="metric-label">总收入</div>
-      <div class="metric-value val-green" id="s-income">¥0.00</div>
-    </div>
-    <div class="metric">
-      <div class="metric-label">总支出</div>
-      <div class="metric-value val-red" id="s-expense">¥0.00</div>
-    </div>
-    <div class="metric">
-      <div class="metric-label">当前余额</div>
-      <div class="metric-value val-neutral" id="s-balance">¥0.00</div>
-    </div>
+    <div class="metric"><div class="metric-label">总收入</div><div class="metric-value val-green" id="s-income">¥0.00</div></div>
+    <div class="metric"><div class="metric-label">总支出</div><div class="metric-value val-red" id="s-expense">¥0.00</div></div>
+    <div class="metric"><div class="metric-label">当前余额</div><div class="metric-value val-neutral" id="s-balance">¥0.00</div></div>
   </div>
 
-  <!-- 筛选 & 导出 -->
   <div class="card">
     <div class="card-title">筛选 &amp; 导出 &amp; 导入</div>
     <div class="filter-grid">
-      <div class="form-group">
-        <label>开始日期</label>
-        <input type="date" id="fil-start">
-      </div>
-      <div class="form-group">
-        <label>结束日期</label>
-        <input type="date" id="fil-end">
-      </div>
-      <div class="form-group">
-        <label>收支类型</label>
-        <select id="fil-type">
-          <option value="all">全部</option>
-          <option value="income">收入</option>
-          <option value="expense">支出</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label>归类关键词</label>
-        <input type="text" id="fil-category" placeholder="模糊搜索…">
-      </div>
+      <div class="form-group"><label>开始日期</label><input type="date" id="fil-start"></div>
+      <div class="form-group"><label>结束日期</label><input type="date" id="fil-end"></div>
+      <div class="form-group"><label>收支类型</label><select id="fil-type"><option value="all">全部</option><option value="income">收入</option><option value="expense">支出</option></select></div>
+      <div class="form-group"><label>归类关键词</label><input type="text" id="fil-category" placeholder="模糊搜索…"></div>
     </div>
     <div class="filter-actions">
       <button class="btn-text" onclick="resetFilter()">重置筛选</button>
       <button class="btn btn-outline btn-sm" onclick="applyFilter()">🔍 筛选</button>
-      <button class="btn btn-green btn-sm" onclick="exportCSV()">↓ 导出 Excel</button>
-      <button class="btn btn-amber btn-sm" onclick="openImport()">↑ 导入记录</button>
+      <button class="btn btn-green btn-sm" onclick="exportXLSX()">↓ 导出 Excel</button>
+      <button class="btn btn-amber btn-sm" onclick="openImport()">↑ 导入 Excel</button>
     </div>
   </div>
 
-  <!-- 账目记录 -->
   <div class="card">
     <div class="table-header">
       <div class="card-title" style="margin-bottom:0">账目记录</div>
       <div style="display:flex;align-items:center;gap:12px">
         <span class="result-badge" id="result-info"></span>
-        <button class="btn-text danger btn-sm" onclick="clearAll()">清空全部</button>
+        <button class="btn-text danger" onclick="clearAll()">清空全部</button>
       </div>
     </div>
     <div class="table-wrap">
       <table>
-        <thead>
-          <tr>
-            <th>日期</th>
-            <th>收支</th>
-            <th>描述</th>
-            <th>归类</th>
-            <th>金额</th>
-            <th>客户</th>
-            <th>余额</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody id="records-body">
-          <tr class="empty-row"><td colspan="8">暂无记录</td></tr>
-        </tbody>
+        <thead><tr><th>日期</th><th>收支</th><th>描述</th><th>归类</th><th>金额</th><th>客户</th><th>余额</th><th></th></tr></thead>
+        <tbody id="records-body"><tr class="empty-row"><td colspan="8">暂无记录，请新增第一笔</td></tr></tbody>
       </table>
     </div>
   </div>
-
 </div>
 
 <!-- 修改弹窗 -->
@@ -268,26 +159,11 @@ tr:hover td{background:var(--paper2)}
   <div class="modal">
     <div class="modal-title">修改记录</div>
     <div class="modal-form">
-      <div class="form-group">
-        <label>收支类型</label>
-        <select id="e-type"><option value="income">收入</option><option value="expense">支出</option></select>
-      </div>
-      <div class="form-group">
-        <label>金额（元）</label>
-        <input type="number" id="e-amount" min="0" step="0.01">
-      </div>
-      <div class="form-group">
-        <label>描述</label>
-        <input type="text" id="e-desc">
-      </div>
-      <div class="form-group">
-        <label>归类</label>
-        <input type="text" id="e-category">
-      </div>
-      <div class="form-group">
-        <label>客户</label>
-        <input type="text" id="e-client">
-      </div>
+      <div class="form-group"><label>收支类型</label><select id="e-type"><option value="income">收入</option><option value="expense">支出</option></select></div>
+      <div class="form-group"><label>金额（元）</label><input type="number" id="e-amount" min="0" step="0.01"></div>
+      <div class="form-group"><label>描述</label><input type="text" id="e-desc"></div>
+      <div class="form-group"><label>归类</label><input type="text" id="e-category"></div>
+      <div class="form-group"><label>客户</label><input type="text" id="e-client"></div>
     </div>
     <div class="modal-actions">
       <button class="btn btn-red btn-sm" onclick="deleteRecord()">删除</button>
@@ -300,14 +176,12 @@ tr:hover td{background:var(--paper2)}
 <!-- 导入弹窗 -->
 <div class="overlay" id="import-modal">
   <div class="modal">
-    <div class="modal-title">导入记录</div>
-    <p style="font-size:13px;color:var(--ink2);margin-bottom:1rem;line-height:1.6">
-      请上传之前导出的 <strong>.csv</strong> 文件。系统会自动识别字段并还原记录。
-    </p>
+    <div class="modal-title">导入 Excel 记录</div>
+    <p style="font-size:13px;color:var(--ink2);margin-bottom:1rem;line-height:1.6">请上传之前导出的 <strong>.xlsx</strong> 文件，系统会自动识别并还原记录。</p>
     <label class="import-zone" id="import-zone">
-      <input type="file" id="import-file" accept=".csv" onchange="handleImportFile(this)">
-      <div>点击选择文件，或拖拽 CSV 到此处</div>
-      <div style="font-size:12px;margin-top:6px;opacity:0.7">仅支持本记账本导出的 CSV 格式</div>
+      <input type="file" id="import-file" accept=".xlsx" onchange="handleImportFile(this)">
+      <div>点击选择文件，或拖拽 .xlsx 到此处</div>
+      <div style="font-size:12px;margin-top:6px;opacity:0.7">仅支持本记账本导出的 xlsx 格式</div>
     </label>
     <div id="import-preview" style="margin-top:1rem;font-size:13px;color:var(--ink2);display:none"></div>
     <div class="modal-actions">
@@ -319,122 +193,359 @@ tr:hover td{background:var(--paper2)}
 </div>
 
 <script>
-// ─── State ───────────────────────────────────────────────
-const STORAGE_KEY = 'pab_records_v1';
-let records = [];
-let filtered = [];
-let editIdx = null;
-let importData = [];
-let saveTipTimer;
+// ═══════════════════════════════════════════════
+// PURE JS XLSX WRITER (no external dependencies)
+// Uses ZIP STORE method — valid .xlsx for Excel/Numbers/WPS
+// ═══════════════════════════════════════════════
+const XLSXWriter = (() => {
+  function u8(str) {
+    return new TextEncoder().encode(str);
+  }
+  function crc32(buf) {
+    let c = 0xFFFFFFFF;
+    const t = new Uint32Array(256);
+    for (let i = 0; i < 256; i++) {
+      let v = i;
+      for (let j = 0; j < 8; j++) v = (v & 1) ? (0xEDB88320 ^ (v >>> 1)) : (v >>> 1);
+      t[i] = v;
+    }
+    for (let i = 0; i < buf.length; i++) c = t[(c ^ buf[i]) & 0xFF] ^ (c >>> 8);
+    return (c ^ 0xFFFFFFFF) >>> 0;
+  }
+  function dosTime() {
+    const d = new Date();
+    return ((d.getFullYear() - 1980) << 9 | (d.getMonth() + 1) << 5 | d.getDate()) << 16 |
+           (d.getHours() << 11 | d.getMinutes() << 5 | (d.getSeconds() >> 1));
+  }
+  function le16(n) { return [n & 0xFF, (n >> 8) & 0xFF]; }
+  function le32(n) { return [n & 0xFF, (n >> 8) & 0xFF, (n >> 16) & 0xFF, (n >> 24) & 0xFF]; }
+  function concat(...arrays) {
+    const total = arrays.reduce((s, a) => s + a.length, 0);
+    const out = new Uint8Array(total); let off = 0;
+    for (const a of arrays) { out.set(a, off); off += a.length; }
+    return out;
+  }
+  function zipEntry(name, data) {
+    const nBuf = u8(name);
+    const crc = crc32(data);
+    const dt = dosTime();
+    // local file header
+    const lfh = new Uint8Array([
+      0x50,0x4B,0x03,0x04, // sig
+      0x14,0x00,           // version
+      0x00,0x00,           // flags
+      0x00,0x00,           // compression: STORE
+      ...le32(dt),         // mod time+date
+      ...le32(crc),
+      ...le32(data.length),
+      ...le32(data.length),
+      ...le16(nBuf.length),
+      0x00,0x00            // extra len
+    ]);
+    return { name: nBuf, data, crc, dt, local: concat(lfh, nBuf, data) };
+  }
+  function buildZip(files) {
+    const entries = []; let offset = 0;
+    const parts = [];
+    for (const [name, content] of files) {
+      const e = zipEntry(name, typeof content === 'string' ? u8(content) : content);
+      e.offset = offset;
+      entries.push(e);
+      parts.push(e.local);
+      offset += e.local.length;
+    }
+    // central directory
+    const cdParts = [];
+    for (const e of entries) {
+      const cd = new Uint8Array([
+        0x50,0x4B,0x01,0x02,
+        0x14,0x00, 0x14,0x00,
+        0x00,0x00, 0x00,0x00,
+        ...le32(e.dt),
+        ...le32(e.crc),
+        ...le32(e.data.length),
+        ...le32(e.data.length),
+        ...le16(e.name.length),
+        0x00,0x00, 0x00,0x00, 0x00,0x00,
+        0x00,0x00,0x00,0x00,
+        0x00,0x00,0x00,0x00,
+        ...le32(e.offset)
+      ]);
+      cdParts.push(concat(cd, e.name));
+    }
+    const cd = concat(...cdParts);
+    const cdSize = cd.length;
+    const eocd = new Uint8Array([
+      0x50,0x4B,0x05,0x06,
+      0x00,0x00, 0x00,0x00,
+      ...le16(entries.length), ...le16(entries.length),
+      ...le32(cdSize), ...le32(offset),
+      0x00,0x00
+    ]);
+    return concat(...parts, cd, eocd);
+  }
 
-// ─── Storage ─────────────────────────────────────────────
-function load(){
-  try{ const r=localStorage.getItem(STORAGE_KEY); if(r) records=JSON.parse(r); }catch(e){ records=[]; }
+  function escXml(s) {
+    return String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  function generate(headers, rows) {
+    // shared strings
+    const strings = []; const sMap = {};
+    function si(s) {
+      s = String(s ?? '');
+      if (sMap[s] === undefined) { sMap[s] = strings.length; strings.push(s); }
+      return sMap[s];
+    }
+    // pre-register headers
+    headers.forEach(h => si(h));
+
+    // build cell data
+    const sheetRows = [];
+    // header row
+    sheetRows.push(headers.map((h, c) => ({ t: 's', v: si(h), c })));
+    // data rows
+    rows.forEach(row => {
+      sheetRows.push(row.map((val, c) => {
+        if (val === null || val === undefined || val === '') return { t: 's', v: si(''), c };
+        if (typeof val === 'number') return { t: 'n', v: val, c };
+        return { t: 's', v: si(String(val)), c };
+      }));
+    });
+
+    // col letter
+    function col(c) { return String.fromCharCode(65 + c); }
+
+    // worksheet xml
+    let wsXml = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main">
+<sheetData>`;
+    sheetRows.forEach((row, ri) => {
+      wsXml += `<row r="${ri + 1}">`;
+      row.forEach(cell => {
+        const ref = col(cell.c) + (ri + 1);
+        if (cell.t === 'n') {
+          wsXml += `<c r="${ref}"><v>${cell.v}</v></c>`;
+        } else {
+          wsXml += `<c r="${ref}" t="s"><v>${cell.v}</v></c>`;
+        }
+      });
+      wsXml += `</row>`;
+    });
+    wsXml += `</sheetData></worksheet>`;
+
+    // shared strings xml
+    const ssXml = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<sst xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" count="${strings.length}" uniqueCount="${strings.length}">
+${strings.map(s => `<si><t xml:space="preserve">${escXml(s)}</t></si>`).join('')}
+</sst>`;
+
+    const files = [
+      ['[Content_Types].xml', `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types">
+<Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/>
+<Default Extension="xml" ContentType="application/xml"/>
+<Override PartName="/xl/workbook.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml"/>
+<Override PartName="/xl/worksheets/sheet1.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/>
+<Override PartName="/xl/sharedStrings.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.sharedStrings+xml"/>
+</Types>`],
+      ['_rels/.rels', `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
+<Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="xl/workbook.xml"/>
+</Relationships>`],
+      ['xl/workbook.xml', `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<workbook xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships">
+<sheets><sheet name="账目记录" sheetId="1" r:id="rId1"/></sheets>
+</workbook>`],
+      ['xl/_rels/workbook.xml.rels', `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
+<Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet" Target="worksheets/sheet1.xml"/>
+<Relationship Id="rId2" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/sharedStrings" Target="sharedStrings.xml"/>
+</Relationships>`],
+      ['xl/worksheets/sheet1.xml', wsXml],
+      ['xl/sharedStrings.xml', ssXml],
+    ];
+
+    return buildZip(files);
+  }
+
+  function download(filename, headers, rows) {
+    const data = generate(headers, rows);
+    const blob = new Blob([data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = filename;
+    document.body.appendChild(a); a.click();
+    document.body.removeChild(a); URL.revokeObjectURL(url);
+  }
+
+  return { generate, download };
+})();
+
+// ═══════════════════════════════════════════════
+// PURE JS XLSX READER
+// Parses .xlsx files exported by this app
+// ═══════════════════════════════════════════════
+const XLSXReader = (() => {
+  function u8str(buf) { return new TextDecoder().decode(buf); }
+
+  function findZipEntries(buf) {
+    const view = new DataView(buf);
+    const entries = {};
+    let i = 0;
+    while (i < buf.byteLength - 4) {
+      if (view.getUint32(i, true) === 0x04034B50) {
+        const fnLen = view.getUint16(i + 26, true);
+        const extraLen = view.getUint16(i + 28, true);
+        const compSize = view.getUint32(i + 18, true);
+        const name = u8str(new Uint8Array(buf, i + 30, fnLen));
+        const dataStart = i + 30 + fnLen + extraLen;
+        entries[name] = new Uint8Array(buf, dataStart, compSize);
+        i = dataStart + compSize;
+      } else { i++; }
+    }
+    return entries;
+  }
+
+  function parseXML(str) {
+    return new DOMParser().parseFromString(str, 'application/xml');
+  }
+
+  function parse(arrayBuffer) {
+    const entries = findZipEntries(arrayBuffer);
+    const wsData = entries['xl/worksheets/sheet1.xml'];
+    const ssData = entries['xl/sharedStrings.xml'];
+    if (!wsData) throw new Error('找不到工作表数据');
+
+    // parse shared strings
+    const strings = [];
+    if (ssData) {
+      const ssXml = parseXML(u8str(ssData));
+      ssXml.querySelectorAll('si t').forEach(t => strings.push(t.textContent));
+    }
+
+    // parse worksheet
+    const wsXml = parseXML(u8str(wsData));
+    const rows = [];
+    wsXml.querySelectorAll('row').forEach(row => {
+      const cells = [];
+      row.querySelectorAll('c').forEach(c => {
+        const t = c.getAttribute('t');
+        const vEl = c.querySelector('v');
+        if (!vEl) { cells.push(''); return; }
+        if (t === 's') cells.push(strings[parseInt(vEl.textContent)] ?? '');
+        else cells.push(vEl.textContent);
+      });
+      rows.push(cells);
+    });
+    return rows; // first row = headers
+  }
+
+  return { parse };
+})();
+
+// ═══════════════════════════════════════════════
+// APP LOGIC
+// ═══════════════════════════════════════════════
+const STORAGE_KEY = 'pab_records_v1';
+let records = [], filtered = [], editIdx = null, importData = [], saveTipTimer;
+
+function load() {
+  try { const r = localStorage.getItem(STORAGE_KEY); if (r) records = JSON.parse(r); } catch(e) { records = []; }
 }
-function save(){
-  try{
-    localStorage.setItem(STORAGE_KEY,JSON.stringify(records));
-    const tip=document.getElementById('save-tip');
+function save() {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(records));
+    const tip = document.getElementById('save-tip');
     tip.classList.add('show');
     clearTimeout(saveTipTimer);
-    saveTipTimer=setTimeout(()=>tip.classList.remove('show'),2000);
-  }catch(e){ alert('保存失败，浏览器存储可能已满'); }
+    saveTipTimer = setTimeout(() => tip.classList.remove('show'), 2000);
+  } catch(e) { alert('保存失败，浏览器存储可能已满'); }
 }
 
-// ─── Helpers ─────────────────────────────────────────────
-function today(){
-  const d=new Date();
-  return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());
+function today() {
+  const d = new Date();
+  return d.getFullYear() + '-' + pad(d.getMonth()+1) + '-' + pad(d.getDate());
 }
-function pad(n){ return String(n).padStart(2,'0'); }
-function fmt(n){
-  const abs=Math.abs(Number(n));
-  return '¥'+abs.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g,',');
+function pad(n) { return String(n).padStart(2,'0'); }
+function fmt(n) {
+  return '¥' + Math.abs(Number(n)).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
-function updateSubtitle(){
-  const el=document.getElementById('subtitle');
-  const count=records.length;
-  if(count===0){ el.textContent='暂无记录'; return; }
-  let inc=0,exp=0;
-  records.forEach(r=>{ if(r.type==='income') inc+=r.amount; else exp+=r.amount; });
-  el.textContent=count+'条记录 · 余额 '+(inc-exp>=0?'+':'')+((inc-exp).toFixed(2));
+function updateSubtitle() {
+  const el = document.getElementById('subtitle');
+  if (!records.length) { el.textContent = '暂无记录'; return; }
+  let inc = 0, exp = 0;
+  records.forEach(r => { if (r.type==='income') inc+=r.amount; else exp+=r.amount; });
+  const bal = inc - exp;
+  el.textContent = records.length + '条记录 · 余额 ' + (bal >= 0 ? '+' : '') + bal.toFixed(2);
 }
 
-// ─── Add ─────────────────────────────────────────────────
-function addRecord(){
-  const type=document.getElementById('f-type').value;
-  const amount=parseFloat(document.getElementById('f-amount').value);
-  const desc=document.getElementById('f-desc').value.trim();
-  const category=document.getElementById('f-category').value.trim();
-  const client=document.getElementById('f-client').value.trim();
-  if(!amount||isNaN(amount)||amount<=0){ alert('请填写有效金额'); return; }
-  if(!desc){ alert('请填写描述'); return; }
-  records.push({date:today(),type,amount,desc,category,client});
+function addRecord() {
+  const type = document.getElementById('f-type').value;
+  const amount = parseFloat(document.getElementById('f-amount').value);
+  const desc = document.getElementById('f-desc').value.trim();
+  const category = document.getElementById('f-category').value.trim();
+  const client = document.getElementById('f-client').value.trim();
+  if (!amount || isNaN(amount) || amount <= 0) { alert('请填写有效金额'); return; }
+  if (!desc) { alert('请填写描述'); return; }
+  records.push({ date: today(), type, amount, desc, category, client });
   save();
-  document.getElementById('f-amount').value='';
-  document.getElementById('f-desc').value='';
-  document.getElementById('f-category').value='';
-  document.getElementById('f-client').value='';
-  applyFilter();
-  updateSummary();
-  updateSubtitle();
+  ['f-amount','f-desc','f-category','f-client'].forEach(id => document.getElementById(id).value = '');
+  applyFilter(); updateSummary(); updateSubtitle();
 }
 
-// ─── Summary ──────────────────────────────────────────────
-function updateSummary(){
-  let inc=0,exp=0;
-  records.forEach(r=>{ if(r.type==='income') inc+=r.amount; else exp+=r.amount; });
-  document.getElementById('s-income').textContent=fmt(inc);
-  document.getElementById('s-expense').textContent=fmt(exp);
-  const bal=inc-exp;
-  const el=document.getElementById('s-balance');
-  el.textContent=(bal>=0?'':'-')+fmt(bal);
-  el.className='metric-value '+(bal>=0?'val-green':'val-red');
+function updateSummary() {
+  let inc = 0, exp = 0;
+  records.forEach(r => { if (r.type==='income') inc+=r.amount; else exp+=r.amount; });
+  document.getElementById('s-income').textContent = fmt(inc);
+  document.getElementById('s-expense').textContent = fmt(exp);
+  const bal = inc - exp;
+  const el = document.getElementById('s-balance');
+  el.textContent = (bal >= 0 ? '' : '-') + fmt(bal);
+  el.className = 'metric-value ' + (bal >= 0 ? 'val-green' : 'val-red');
 }
 
-// ─── Filter ───────────────────────────────────────────────
-function applyFilter(){
-  const start=document.getElementById('fil-start').value;
-  const end=document.getElementById('fil-end').value;
-  const type=document.getElementById('fil-type').value;
-  const cat=document.getElementById('fil-category').value.trim().toLowerCase();
-  filtered=records.map((r,i)=>({...r,_i:i})).filter(r=>{
-    if(start&&r.date<start) return false;
-    if(end&&r.date>end) return false;
-    if(type!=='all'&&r.type!==type) return false;
-    if(cat&&!(r.category||'').toLowerCase().includes(cat)) return false;
+function applyFilter() {
+  const start = document.getElementById('fil-start').value;
+  const end = document.getElementById('fil-end').value;
+  const type = document.getElementById('fil-type').value;
+  const cat = document.getElementById('fil-category').value.trim().toLowerCase();
+  filtered = records.map((r,i) => ({...r, _i:i})).filter(r => {
+    if (start && r.date < start) return false;
+    if (end && r.date > end) return false;
+    if (type !== 'all' && r.type !== type) return false;
+    if (cat && !(r.category||'').toLowerCase().includes(cat)) return false;
     return true;
   });
   renderTable();
 }
-function resetFilter(){
-  ['fil-start','fil-end','fil-category'].forEach(id=>document.getElementById(id).value='');
-  document.getElementById('fil-type').value='all';
+function resetFilter() {
+  ['fil-start','fil-end','fil-category'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('fil-type').value = 'all';
   applyFilter();
 }
 
-// ─── Render ───────────────────────────────────────────────
-function calcBalMap(){
-  let b=0; const m={};
-  records.forEach((r,i)=>{ b+=r.type==='income'?r.amount:-r.amount; m[i]=b; });
+function calcBalMap() {
+  let b = 0; const m = {};
+  records.forEach((r,i) => { b += r.type==='income' ? r.amount : -r.amount; m[i] = b; });
   return m;
 }
-function renderTable(){
-  const tbody=document.getElementById('records-body');
-  const info=document.getElementById('result-info');
-  if(records.length===0){
-    tbody.innerHTML='<tr class="empty-row"><td colspan="8">暂无记录，请新增第一笔</td></tr>';
-    info.textContent=''; return;
+function renderTable() {
+  const tbody = document.getElementById('records-body');
+  const info = document.getElementById('result-info');
+  if (!records.length) {
+    tbody.innerHTML = '<tr class="empty-row"><td colspan="8">暂无记录，请新增第一笔</td></tr>';
+    info.textContent = ''; return;
   }
-  const isF=filtered.length!==records.length;
-  info.textContent=isF?`筛选 ${filtered.length} / ${records.length} 条`:`共 ${records.length} 条`;
-  if(filtered.length===0){
-    tbody.innerHTML='<tr class="empty-row"><td colspan="8">没有符合条件的记录</td></tr>'; return;
+  const isF = filtered.length !== records.length;
+  info.textContent = isF ? `筛选 ${filtered.length} / ${records.length} 条` : `共 ${records.length} 条`;
+  if (!filtered.length) {
+    tbody.innerHTML = '<tr class="empty-row"><td colspan="8">没有符合条件的记录</td></tr>'; return;
   }
-  const bm=calcBalMap();
-  tbody.innerHTML=filtered.map(r=>{
-    const bal=bm[r._i];
-    const sign=r.type==='income'?'+':'-';
+  const bm = calcBalMap();
+  tbody.innerHTML = filtered.map(r => {
+    const bal = bm[r._i];
+    const sign = r.type === 'income' ? '+' : '-';
     return `<tr>
       <td class="mono" style="white-space:nowrap">${r.date}</td>
       <td><span class="badge ${r.type==='income'?'badge-in':'badge-out'}">${r.type==='income'?'收入':'支出'}</span></td>
@@ -448,153 +559,135 @@ function renderTable(){
   }).join('');
 }
 
-// ─── Edit ─────────────────────────────────────────────────
-function openEdit(origIdx){
-  editIdx=origIdx;
-  const r=records[origIdx];
-  document.getElementById('e-type').value=r.type;
-  document.getElementById('e-amount').value=r.amount;
-  document.getElementById('e-desc').value=r.desc;
-  document.getElementById('e-category').value=r.category||'';
-  document.getElementById('e-client').value=r.client||'';
+function openEdit(origIdx) {
+  editIdx = origIdx;
+  const r = records[origIdx];
+  document.getElementById('e-type').value = r.type;
+  document.getElementById('e-amount').value = r.amount;
+  document.getElementById('e-desc').value = r.desc;
+  document.getElementById('e-category').value = r.category || '';
+  document.getElementById('e-client').value = r.client || '';
   openModal('edit-modal');
 }
-function saveEdit(){
-  if(editIdx===null) return;
-  const amount=parseFloat(document.getElementById('e-amount').value);
-  if(!amount||isNaN(amount)||amount<=0){ alert('请填写有效金额'); return; }
-  records[editIdx]={
-    date:records[editIdx].date,
-    type:document.getElementById('e-type').value,
+function saveEdit() {
+  if (editIdx === null) return;
+  const amount = parseFloat(document.getElementById('e-amount').value);
+  if (!amount || isNaN(amount) || amount <= 0) { alert('请填写有效金额'); return; }
+  records[editIdx] = {
+    date: records[editIdx].date,
+    type: document.getElementById('e-type').value,
     amount,
-    desc:document.getElementById('e-desc').value.trim(),
-    category:document.getElementById('e-category').value.trim(),
-    client:document.getElementById('e-client').value.trim()
+    desc: document.getElementById('e-desc').value.trim(),
+    category: document.getElementById('e-category').value.trim(),
+    client: document.getElementById('e-client').value.trim()
   };
   save(); closeModal('edit-modal'); applyFilter(); updateSummary(); updateSubtitle();
 }
-function deleteRecord(){
-  if(editIdx===null) return;
-  if(!confirm('确定删除这条记录吗？')) return;
-  records.splice(editIdx,1);
+function deleteRecord() {
+  if (editIdx === null) return;
+  if (!confirm('确定删除这条记录吗？')) return;
+  records.splice(editIdx, 1);
   save(); closeModal('edit-modal'); applyFilter(); updateSummary(); updateSubtitle();
 }
-function clearAll(){
-  if(!confirm('确定清空全部记录吗？此操作不可恢复！')) return;
-  records=[];
+function clearAll() {
+  if (!confirm('确定清空全部记录吗？此操作不可恢复！')) return;
+  records = [];
   save(); applyFilter(); updateSummary(); updateSubtitle();
 }
 
-// ─── Modal ────────────────────────────────────────────────
-function openModal(id){ document.getElementById(id).classList.add('open'); }
-function closeModal(id){
+function openModal(id) { document.getElementById(id).classList.add('open'); }
+function closeModal(id) {
   document.getElementById(id).classList.remove('open');
-  if(id==='edit-modal') editIdx=null;
-  if(id==='import-modal'){ importData=[]; resetImportUI(); }
+  if (id === 'edit-modal') editIdx = null;
+  if (id === 'import-modal') { importData = []; resetImportUI(); }
 }
-// close on overlay click
-document.addEventListener('click',e=>{
-  if(e.target.classList.contains('overlay')) closeModal(e.target.id);
+document.addEventListener('click', e => {
+  if (e.target.classList.contains('overlay')) closeModal(e.target.id);
 });
 
-// ─── Export CSV ───────────────────────────────────────────
-function exportCSV(){
-  const toExp=filtered.length>0&&filtered.length!==records.length
+// ── Export XLSX ──────────────────────────────────
+function exportXLSX() {
+  const toExp = (filtered.length > 0 && filtered.length !== records.length)
     ? filtered
-    : records.map((r,i)=>({...r,_i:i}));
-  if(toExp.length===0){ alert('没有可导出的记录'); return; }
-  const bm=calcBalMap();
-  const esc=v=>{ const s=String(v??''); return (s.includes(',')||s.includes('"')||s.includes('\n'))?'"'+s.replace(/"/g,'""')+'"':s; };
-  const rows=[['日期','收支类型','描述','归类','金额','客户','余额']];
-  toExp.forEach(r=>{
-    const bal=bm[r._i];
-    rows.push([r.date,r.type==='income'?'收入':'支出',r.desc||'',r.category||'',(r.type==='income'?1:-1)*r.amount,r.client||'',Number(bal.toFixed(2))]);
-  });
-  const csv='\uFEFF'+rows.map(row=>row.map(esc).join(',')).join('\r\n');
-  const blob=new Blob([csv],{type:'text/csv;charset=utf-8'});
-  const url=URL.createObjectURL(blob);
-  const a=document.createElement('a');
-  const isF=filtered.length!==records.length&&filtered.length>0;
-  a.href=url; a.download='私账记账本'+(isF?'_筛选':'')+'.csv';
-  document.body.appendChild(a); a.click(); document.body.removeChild(a);
-  URL.revokeObjectURL(url);
+    : records.map((r,i) => ({...r, _i:i}));
+  if (!toExp.length) { alert('没有可导出的记录'); return; }
+  const bm = calcBalMap();
+  const headers = ['日期','收支类型','描述','归类','金额','客户','余额'];
+  const rows = toExp.map(r => [
+    r.date,
+    r.type === 'income' ? '收入' : '支出',
+    r.desc || '',
+    r.category || '',
+    (r.type === 'income' ? 1 : -1) * r.amount,
+    r.client || '',
+    Number(bm[r._i].toFixed(2))
+  ]);
+  const isF = filtered.length !== records.length && filtered.length > 0;
+  XLSXWriter.download('私账记账本' + (isF ? '_筛选' : '') + '.xlsx', headers, rows);
 }
 
-// ─── Import ───────────────────────────────────────────────
-function openImport(){
-  resetImportUI();
-  openModal('import-modal');
+// ── Import XLSX ──────────────────────────────────
+function openImport() { resetImportUI(); openModal('import-modal'); }
+function resetImportUI() {
+  const fi = document.getElementById('import-file');
+  if (fi) fi.value = '';
+  const prev = document.getElementById('import-preview');
+  prev.style.display = 'none'; prev.innerHTML = '';
+  document.getElementById('btn-append').style.display = 'none';
+  document.getElementById('btn-replace').style.display = 'none';
+  importData = [];
 }
-function resetImportUI(){
-  document.getElementById('import-file').value='';
-  document.getElementById('import-preview').style.display='none';
-  document.getElementById('import-preview').textContent='';
-  document.getElementById('btn-append').style.display='none';
-  document.getElementById('btn-replace').style.display='none';
-  importData=[];
-}
-function handleImportFile(input){
-  const file=input.files[0];
-  if(!file) return;
-  const reader=new FileReader();
-  reader.onload=e=>{
-    const text=e.target.result.replace(/^\uFEFF/,''); // strip BOM
-    const lines=text.split(/\r?\n/).filter(l=>l.trim());
-    if(lines.length<2){ showImportError('文件内容为空或格式不正确'); return; }
-    const header=parseCSVLine(lines[0]);
-    // validate header
-    const expected=['日期','收支类型','描述','归类','金额','客户','余额'];
-    const ok=expected.every((h,i)=>header[i]&&header[i].trim()===h);
-    if(!ok){ showImportError('CSV 格式不匹配，请使用本记账本导出的文件'); return; }
-    importData=[];
-    for(let i=1;i<lines.length;i++){
-      const cols=parseCSVLine(lines[i]);
-      if(cols.length<6) continue;
-      const type=cols[1].trim()==='收入'?'income':'expense';
-      const amount=Math.abs(parseFloat(cols[4]));
-      if(isNaN(amount)) continue;
-      importData.push({date:cols[0].trim(),type,desc:cols[2].trim(),category:cols[3].trim(),amount,client:cols[5].trim()});
+function handleImportFile(input) {
+  const file = input.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    try {
+      const rows = XLSXReader.parse(e.target.result);
+      if (rows.length < 2) { showImportError('文件内容为空'); return; }
+      const header = rows[0];
+      const expected = ['日期','收支类型','描述','归类','金额','客户','余额'];
+      const ok = expected.every((h,i) => header[i] && header[i].trim() === h);
+      if (!ok) { showImportError('格式不匹配，请使用本记账本导出的 xlsx 文件'); return; }
+      importData = [];
+      for (let i = 1; i < rows.length; i++) {
+        const cols = rows[i];
+        if (!cols || cols.length < 6) continue;
+        const type = String(cols[1]).trim() === '收入' ? 'income' : 'expense';
+        const amount = Math.abs(parseFloat(cols[4]));
+        if (!cols[0] || isNaN(amount)) continue;
+        importData.push({ date: String(cols[0]).trim(), type, desc: String(cols[2]||'').trim(), category: String(cols[3]||'').trim(), amount, client: String(cols[5]||'').trim() });
+      }
+      if (!importData.length) { showImportError('未能识别到有效记录'); return; }
+      const prev = document.getElementById('import-preview');
+      prev.style.display = 'block';
+      prev.innerHTML = `✓ 识别到 <strong>${importData.length}</strong> 条记录，请选择导入方式：`;
+      document.getElementById('btn-append').style.display = 'inline-flex';
+      document.getElementById('btn-replace').style.display = 'inline-flex';
+    } catch(err) {
+      showImportError('解析失败：' + err.message);
     }
-    if(importData.length===0){ showImportError('未能识别到有效记录'); return; }
-    const prev=document.getElementById('import-preview');
-    prev.style.display='block';
-    prev.innerHTML=`✓ 识别到 <strong>${importData.length}</strong> 条记录，请选择导入方式：`;
-    document.getElementById('btn-append').style.display='inline-flex';
-    document.getElementById('btn-replace').style.display='inline-flex';
   };
-  reader.readAsText(file,'utf-8');
+  reader.readAsArrayBuffer(file);
 }
-function parseCSVLine(line){
-  const result=[]; let cur=''; let inQ=false;
-  for(let i=0;i<line.length;i++){
-    const c=line[i];
-    if(c==='"'){ if(inQ&&line[i+1]==='"'){ cur+='"'; i++; } else inQ=!inQ; }
-    else if(c===','&&!inQ){ result.push(cur); cur=''; }
-    else cur+=c;
-  }
-  result.push(cur); return result;
+function showImportError(msg) {
+  const prev = document.getElementById('import-preview');
+  prev.style.display = 'block';
+  prev.innerHTML = '<span style="color:var(--red)">✗ ' + msg + '</span>';
 }
-function showImportError(msg){
-  const prev=document.getElementById('import-preview');
-  prev.style.display='block';
-  prev.innerHTML='<span style="color:var(--red)">✗ '+msg+'</span>';
-}
-function confirmImport(mode){
-  if(importData.length===0) return;
-  if(mode==='replace'){
-    if(!confirm(`确定用导入的 ${importData.length} 条记录替换全部现有记录吗？`)) return;
-    records=importData;
+function confirmImport(mode) {
+  if (!importData.length) return;
+  if (mode === 'replace') {
+    if (!confirm(`确定用导入的 ${importData.length} 条记录替换全部现有记录吗？`)) return;
+    records = importData;
   } else {
-    records=[...records,...importData];
+    records = [...records, ...importData];
   }
   save(); closeModal('import-modal'); applyFilter(); updateSummary(); updateSubtitle();
 }
 
-// ─── Init ─────────────────────────────────────────────────
-load();
-applyFilter();
-updateSummary();
-updateSubtitle();
+// ── Init ─────────────────────────────────────────
+load(); applyFilter(); updateSummary(); updateSubtitle();
 </script>
 </body>
 </html>
